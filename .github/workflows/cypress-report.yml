@@ -24,10 +24,13 @@ jobs:
           node-version: 18.16.0
       - run: npm install
       - run: npm run build --if-present
+      
+      - name: Install Cypress Tests
+        run : npm install cypress
+
             
       - name: Run Cypress Tests
         run : npx cypress run
-        continue-on-error: false
       
       
       - name: Deploy Report to page
