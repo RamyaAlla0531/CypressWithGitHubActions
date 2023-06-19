@@ -13,22 +13,31 @@ jobs:
   build:
     name:    Run Cypress Tests
     runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
     
-    - name: Install cypress and verify
-      run :  |
-            npm ci
-            $(npm bin)/cypress verify
+      - name: Install cypress and verify
+        run : npm install cypress
             
-    - name: Run Cypress Tests
-      run : npx cypress run
-      continue-on-error: false
+      - name: Run Cypress Tests
+        run : npx cypress run
+        continue-on-error: false
       
       
-    - name: Deploy Report to page
-      uses: peaceiris/actions-gh-pages@v3
-      with:
+      - name: Deploy Report to page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
