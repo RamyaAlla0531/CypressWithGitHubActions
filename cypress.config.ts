@@ -1,15 +1,10 @@
 import { defineConfig } from "cypress";
 
 module.exports = defineConfig({
-  reporter: 'mochawesome',
-  reporterOptions: {
-    reportDir: 'cypress/results',
-    overwrite: false,
-    embeddedScreenshots: true,
-    screenshotOnRunFailure: true,
-    html: true,
-    json: true,
-  },
+  "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "configFile": "reporter-config.json"
+    },
   env: {
     url: 'https://nikhilp-prod1.inspify.com/hub#/sessions',
     "grepFilterSpecs": true,
