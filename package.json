@@ -19,4 +19,7 @@
     "mochawesome-merge": "^4.3.0",
     "typescript": "5.0"
   }
+  "scripts": {
+  "test:chrome": "cypress run --browser chrome"
+}
 }
