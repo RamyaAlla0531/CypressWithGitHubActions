@@ -1,8 +1,9 @@
 name: Create Cypress reports
 on:
   push:
-    branches:
-      - 'main'
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 jobs:
  cypress-e2e-chrome81:
   name: Run on Chrome 
