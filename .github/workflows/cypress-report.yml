@@ -6,7 +6,7 @@ jobs:
  cypress-e2e-chrome81:
   name: Run on Chrome 
   runs-on: ubuntu-21.04
-  container: node-18.16.0-chrome-113.0.5672.92-1-ff-113.0
+  container: node-18.16.0-chrome-113.0.5672.92-1-ff-113.0-edge-113.0.1774.35-1
   steps:
     - uses: actions/checkout@v2
     - name: Install a project with a clean slate
