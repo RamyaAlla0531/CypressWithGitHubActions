@@ -13,8 +13,7 @@ jobs:
   build:
     name:    Run Cypress Tests
     runs-on: windows-latest
-    
-   
+     
 
     steps:
       - uses: actions/checkout@v3
@@ -31,11 +30,16 @@ jobs:
             
       - name: Run Cypress Test
         run : npx cypress run
+        
+      - name: Copy test execution videos
+        run: |
+          mkdir public
+          cp -r cypress/videos public/videos
       
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./results
+          publish_dir: ./public
                 
